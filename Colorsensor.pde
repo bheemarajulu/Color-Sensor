@@ -91,7 +91,7 @@ void loop() {
     Serial.println(blue_light);
     
    }
-  
+  // Getting color 
   if((red_light>blue_light) && (red_light>green_light))
     Serial.println("detecting red");
   else if((green_light>blue_light) && (green_light>red_light))
@@ -99,7 +99,7 @@ void loop() {
   else if((blue_light>red_light) && (blue_light>green_light))
     Serial.println("detecting blue");
   else
-    Serial.println("color not detectable");
+    Serial.println("color not identified");
   // Wait 1 second before next reading
   delay(1000);
 }
