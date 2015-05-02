@@ -1,2 +1,2 @@
 # Color-Sensor
-# Detecting color from Gesuture Sensor
+Detecting colors from Gesuture Sensor
