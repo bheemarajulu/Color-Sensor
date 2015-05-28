@@ -1,6 +1,8 @@
+//********************Code to display 7 colors from RGB Sensor**********************//
+//*******************Bheema Rajulu*******************************//
+/*******Thanks to Adafruit libraies and blog help **************/
 #include <Wire.h>
 #include "Adafruit_TCS34725.h"
-// our RGB -> eye-recognized gamma color
 byte gammatable[256];
 
 Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_4X);
@@ -73,8 +75,6 @@ void loop() {
   Serial.print("\tKey:\t"); Serial.print(K);
   Serial.println();
   
- // OK we have to find the two primary colors
-  // check if blue is smallest. MEME: fix for 'white'
   float remove1, normalize_2, s1,s2,s3,s4;
   if ((C < M) && (C < Y) && (C < K)) {
     remove1 = C;
@@ -107,20 +107,14 @@ void loop() {
   yellownorm /= normalize_2;
   blacknorm /= normalize_2;
 
-  //  Serial.println();
-  //  strip.setPixelColor(0, strip.Color(gammatable[(int)r], gammatable[(int)g], 
-   //   gammatable[(int)b]));
-  //  strip.show();
-  //  "\tCyan:\t"
-    Serial.print("\tcyannorm:\t"); Serial.print(cyannorm); 
+     Serial.print("\tcyannorm:\t"); Serial.print(cyannorm); 
     Serial.print("\tmagnetanorm:\t"); Serial.print(magnetanorm); 
     Serial.print("\tyellownorm:\t"); Serial.print(yellownorm); 
     Serial.print("\tblacknorm:\t"); Serial.print(blacknorm);
     Serial.println();
  
   
-  // OK we have to find the two primary colors
-  // check if blue is smallest. MEME: fix for 'white'
+  // normalize the rgb color
   float remove, normalize;
   if ((b < g) && (b < r)) {
     remove = b;
@@ -154,16 +148,12 @@ void loop() {
   Serial.print((int)R, HEX); Serial.print((int)G, HEX); Serial.print((int)B, HEX);
   Serial.println();
 
-  //  Serial.println();
-  //  strip.setPixelColor(0, strip.Color(gammatable[(int)r], gammatable[(int)g], 
-   //   gammatable[(int)b]));
-  //  strip.show();
-  //  "\tCyan:\t"
+  
     Serial.print("\trednorm:\t"); Serial.print(rednorm); 
     Serial.print("\tgreennorm:\t"); Serial.print(greennorm); 
     Serial.print("\tbluenorm:\t"); Serial.print(bluenorm); 
     Serial.println();
-
+/* Find the color and display */
  // float rainbowtone = 0;
 Serial.println();
   if (rednorm <= 0.1 && bluenorm <=0.10) {
